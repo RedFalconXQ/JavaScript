@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<head>
-<title>
-    Task List - Webpage
-</title>
-</head>
-<body>
 
+<head>
+    <title>
+        Task List - Webpage
+    </title>
+    <script src="tasklist.js"></script>
+</head>
+
+<body>
+    <p>Task Number</p>
+    <input type="number" id="inputTaskNumber" min="1">
+
+    <p>Title</p>
+    <input type="text" id="inputTitle">
+
+    <p>Description</p>
+    <input type="text" id="inputDescription">
+
+    <p></p>
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="displayTask()">Display Task</button>
+
+    <div id="ListOfTasks"></div>
 </body>
+
 </html>
