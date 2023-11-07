@@ -5,6 +5,7 @@
         Task List - Webpage
     </title>
     <script src="tasklist.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -12,16 +13,49 @@
     <input type="number" id="inputTaskNumber" min="1">
 
     <p>Title</p>
-    <input type="text" id="inputTitle">
+    <input type="text" id="inputTitle" placeholder="Type the task's title">
 
     <p>Description</p>
-    <input type="text" id="inputDescription">
+    <input type="text" id="inputDescription" placeholder="Type the task's description">
 
     <p></p>
     <button onclick="addTask()">Add Task</button>
     <button onclick="displayTask()">Display Task</button>
 
-    <div id="ListOfTasks"></div>
+    <p></p>
+    <ol id="ListOfTasks"></ol>
+
+    <p>Select the Task Number to edit</p>
+    <input type="number" id="inputTaskToEdit" min="1">
+
+    <p></p>
+    <button onclick="showEditTask()">Edit Task</button>
+
+    <h4>Task To Edit:
+        <ol id="taskToEdit"></ol>
+    </h4>
+
+    <p></p>
+    <div id="EditTasks">
+        <p>Task Number</p>
+        <input type="number" id="editTaskNumber" min="1">
+
+        <p>Title</p>
+        <input type="text" id="editTitle" placeholder="Type the task's title">
+
+        <p>Description</p>
+        <input type="text" id="editDescription" placeholder="Type the task's description">
+
+        <p></p>
+        <button onclick="hideEditTask()">Submit</button>
+    </div>
+
+    <p></p>
+    <p>Select the Task Number to delete</p>
+    <input type="number" id="inputTaskToDelete" min="1">
+
+    <p></p>
+    <button onclick="deleteTask()">Delete Task</button>
 </body>
 
 </html>
