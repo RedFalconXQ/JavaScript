@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <h2>Task Records</h2>
+
     <p>Task Number</p>
     <input type="number" id="inputTaskNumber" min="1">
 
@@ -19,39 +21,47 @@
     <input type="text" id="inputDescription" placeholder="Type the task's description">
 
     <p></p>
+    <label for="checkbox">Check whether the task is completed or pending:</label>
+    <p></p>
+    <input type="checkbox" id="completed" name="completed" value="completed">
+    <label for="checkbox">Completed</label>
+    <input type="checkbox" id="pending" name="pending" value="pending">
+    <label for="checkbox">Pending</label>
+
+    <p></p>
     <button onclick="addTask()">Add Task</button>
     <button onclick="displayTask()">Display Task</button>
 
     <p></p>
-    <ol id="ListOfTasks"></ol>
+    <ul id="listOfTasks"></ul>
+    <p id="statusTask"></p>
 
-    <p>Select the Task Number to edit</p>
+    <p>Select the Task's Position to edit</p>
     <input type="number" id="inputTaskToEdit" min="1">
 
     <p></p>
-    <button onclick="showEditTask()">Edit Task</button>
-
-    <h4>Task To Edit:
-        <ol id="taskToEdit"></ol>
-    </h4>
+    <button onclick="showTaskToEdit()">Show Task</button>
 
     <p></p>
-    <div id="EditTasks">
+    <span id="taskToEdit"></span>
+
+    <p></p>
+    <div id="editTasks">
         <p>Task Number</p>
-        <input type="number" id="editTaskNumber" min="1">
+        <input type="number" id="updateTaskNumber" min="1">
 
         <p>Title</p>
-        <input type="text" id="editTitle" placeholder="Type the task's title">
+        <input type="text" id="updateTitle" placeholder="Type the task's title">
 
         <p>Description</p>
-        <input type="text" id="editDescription" placeholder="Type the task's description">
+        <input type="text" id="updateDescription" placeholder="Type the task's description">
 
         <p></p>
-        <button onclick="hideEditTask()">Submit</button>
+        <button onclick="updateTask()">Update Task</button>
     </div>
 
     <p></p>
-    <p>Select the Task Number to delete</p>
+    <p>Select the Task's Position to delete</p>
     <input type="number" id="inputTaskToDelete" min="1">
 
     <p></p>

@@ -1,3 +1,61 @@
+h2 {
+    background-color: blue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: white;
+}
+
+p {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+button {
+    background-color: blue;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+}
+
+body {
+    background-image: url(task_image.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    color: blue;
+    text-align: center;
+}
+
+div {
+    padding-top: 0px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    background-color: lightblue;
+    width: 200px;
+    border: 5px solid blue;
+    padding: 10px;
+    margin: 15px;
+    margin: auto;
+}
+
+ul {
+    display: inline-block;
+    text-align: left;
+}
+
 #EditTasks {
     display: none;
 }

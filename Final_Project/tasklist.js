@@ -1,10 +1,11 @@
 let taskList = [];
 
 //Constructor
-function Task(taskNumber, title, description) {
+function Task(taskNumber, title, description, status) {
     this.taskNumber = taskNumber;
     this.title = title;
     this.description = description;
+    this.status = status;
 }
 
 function addTask() {
@@ -13,7 +14,7 @@ function addTask() {
     let description = document.getElementById("inputDescription").value;
 
     if (taskNumber > 0) {
-        let task = new Task(taskNumber, title, description);
+        let task = new Task(taskNumber, title, description, false);
 
         taskList.push(task);
         alert("Task registered");
@@ -25,18 +26,31 @@ function addTask() {
 
 function displayTask() {
     let displayT = '';
-
+    let checkBox = document.getElementById("completed").checked;
+    console.log("Check", checkBox);
     for (let i = 0; i < taskList.length; i++) {
-        displayT += '<li>' + "Task: " + taskList[i].taskNumber + ". "
+        displayT += '<li>' + "Position: " + [i + 1] + ". " + "Task: " + taskList[i].taskNumber + ". "
             + "Title: " + taskList[i].title + ". "
-            + "Description: " + taskList[i].description + '</li>';
+            + "Description: " + taskList[i].description + ". "
+            + "Status: " + checkBox + ". " + '</li>';
+        console.log("Check inside", checkBox);
     }
 
-    document.getElementById("ListOfTasks").innerHTML = displayT;
+    document.getElementById("listOfTasks").innerHTML = displayT;
 }
 
-function showEditTask() {
-    document.getElementById("EditTasks").style.display = "block";
+/*function completed() {
+    let checkBoxCompleted = document.getElementById("completed");
+    let textCompleted = document.getElementById("text");
+    if (checkBoxCompleted.checked == true){
+        textCompleted.style.display = "block";
+    } else {
+        textCompleted.style.display = "none";
+    }
+}*/
+
+function showTaskToEdit() {
+    document.getElementById("editTasks").style.display = "block";
 
     /*let inputN = document.getElementById("inputTaskNumber");
     inputN.disabled = true;
@@ -47,12 +61,7 @@ function showEditTask() {
     let inputD = document.getElementById("inputDescription");
     inputD.disabled = true;*/
 
-    let taskToEdit = +document.getElementById("inputTaskToEdit").value;
-
-    /*let position = taskList.find((task, index) => findTaskNumber(task, index));
-   function findTaskNumber(task, index) {
-       return index === taskToEdit - 1;
-   }*/
+    let taskToEdit = document.getElementById("inputTaskToEdit").value;
 
     let displayTE = '';
 
@@ -60,9 +69,9 @@ function showEditTask() {
     positionToEdit = taskToEdit - 1;
     if (positionToEdit >= 0 && positionToEdit <= taskList.length - 1) {
         //console.log("Position", positionToEdit);
-        displayTE += '<ol>' + '<li>' + "Task Number: " + taskList[positionToEdit].taskNumber + ". "
+        displayTE += "Position: " + [positionToEdit + 1] + '<li>' + "Task: " + taskList[positionToEdit].taskNumber + ". "
             + "Title: " + taskList[positionToEdit].title + ". "
-            + "Description: " + taskList[positionToEdit].description + '</li>' + '</ol>';
+            + "Description: " + taskList[positionToEdit].description + '</li>';
 
         document.getElementById("taskToEdit").innerHTML = displayTE;
     }
@@ -71,43 +80,38 @@ function showEditTask() {
     }
 }
 
-function hideEditTask() {
-    document.getElementById("EditTasks").style.display = "none";
+function updateTask() {
+    document.getElementById("editTasks").style.display = "block";
 
-    let inputN = document.getElementById("inputTaskNumber");
+    let inputN = document.getElementById("updateTaskNumber").value;
     inputN.disabled = false;
 
-    let inputT = document.getElementById("inputTitle");
+    let inputT = document.getElementById("updateTitle").value;
     inputT.disabled = false;
 
-    let inputD = document.getElementById("inputDescription");
+    let inputD = document.getElementById("updateDescription").value;
     inputD.disabled = false;
 
+    //Update the task according to the input
+    let positionToEdit = +inputN - 1;
+    console.log(positionToEdit);
+
     for (let i = 0; i < taskList.length; i++) {
-        displayT += '<ol>' + '<li>' + "Task Number: " + taskList[i].taskNumber + ". "
-            + "Title: " + taskList[i].title + ". "
-            + "Description: " + taskList[i].description + '</li>' + '</ol>';
+        if (i == positionToEdit) {
+            taskList[i].title = inputT;
+            taskList[i].description = inputD;
+        } else {
+            alert("INPUT NOT ALLOWED");
+        }
     }
-    /*let taskNumber = document.getElementById("inputTaskToEdit").value;
-    let title = document.getElementById("inputTitle").value;
-    let description = document.getElementById("inputDescription").value;
-
-    if (taskNumber > 0) {
-        let task = new Task(taskNumber, title, description);
-
-        taskList.push(task);
-        alert("Task edited successfully!");
-    }
-    else {
-        alert("INPUT NOT ALLOWED");
-    }*/
 }
+
 function deleteTask() {
     let taskToDelete = document.getElementById("inputTaskToDelete").value;
 
-    //Delete the task according to the input. Another task replaces the position of the deleted task
+    //Delete the task according to the input. The next task replaces the position of the deleted task
     positionToDelete = taskToDelete - 1;
-    if (positionToDelete > 0) {
+    if (positionToDelete >= 0 && positionToDelete <= taskList.length - 1) {
 
         taskList.splice(positionToDelete, 1);
         alert("Task deleted");
